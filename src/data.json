@@ -1,0 +1,25 @@
+{
+    "user-name": "Byter",
+    "user-time": "10 years",
+    "loss-weight": 10,
+
+    "chart-data": [5, 7, 3, 0, 2, 10, 6],
+    "total-glass": 20,
+    "cards-content": [
+        {
+            "progress": 20,
+            "target": "50 km",
+            "info": "10 km / week"
+        },
+        {
+            "progress": 20,
+            "target": "12000 steps / week",
+            "info": "10000 steps / week"
+        },
+        {
+            "progress": 20,
+            "target": "7 km / week",
+            "info": "5 km / week"
+        }
+    ]
+}   

@@ -1,0 +1,597 @@
+@mixin setZero(){
+	top: 0px;
+	left: 0px;
+	margin: 0px;
+}
+
+@mixin set-icon-size($h, $w){
+	width: $w;
+	height: $h;
+}
+
+@mixin scale-hover($scale:1.1) {
+	transform: scale(1);
+	transition: transform 0.2s;
+
+	&:hover{
+		transform: scale($scale);
+		transition: transform .3s
+	}
+}
+
+@mixin centre() {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@mixin make-background{
+	background: linear-gradient(to bottom, #6D63FF, #3B32C0);
+}
+
+@mixin set-selector-state($opacity, $height, $visibility){
+	opacity: $opacity;
+	height: $height;
+	visibility: $visibility;
+	@if $visibility == 'visible' {
+		transition: height 0.4s, opacity 0.6s;
+	} @else {
+		transition: height 0.8s, opacity 0.35s, visibility 0.6s;
+	}
+}
+
+body{
+	@include setZero();
+	background-color: #F1F1F1;
+	#root{
+		@include setZero();
+		font-family: 'Inter', sans-serif;
+		h3, img{
+			user-select: none;
+		}
+	}
+}
+
+.main-content{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+.home-page{
+	
+	.main-panel-content{
+		margin: 47px 0px;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		@include scale-hover(1.02);
+		// #chart{}
+
+		.activity{
+			@include set-icon-size(375px, 664px);
+			@include make-background();
+			
+
+			border-radius: 10px 40px;
+			padding: 24px 25px 53px 40px;
+			margin-right: 49px;
+			
+			box-sizing: border-box;
+			box-shadow: 0px 0px 10px #dbdbdb;
+		}
+
+		.selector-window{
+			position: absolute;	
+			top: 0px;
+			margin-top: 55px;
+
+			@include set-icon-size(auto, 130px);
+			border-radius: 15px;
+			background-color: rgba(184, 184, 184, 0.3);
+			display: block;
+			padding: 10px;
+
+			.window-selection{
+				display: flex;
+				flex-flow: row nowrap;
+				justify-content: space-between;
+				
+				button{
+					background-color: transparent;
+					border: 0px;
+				}
+				img{
+					@include centre();
+					@include set-icon-size(10px, 10px);
+					transform: rotate(-0.25turn);;
+				}
+				p{
+					color: #FFF;
+					margin: 5px 0px;
+				}
+	
+			}
+		}	
+
+		.selector-window-open{
+			.selector-window{
+				@include set-selector-state(1, 100px, visible);
+			}
+			&>img{
+				transform: rotate(-180deg);
+				transition: transform 0.6s;
+			}
+			
+		}
+
+		.selector-window-close{
+			.selector-window{
+				@include set-selector-state(0, 0px, hidden);
+			}
+			&>img{
+				transform: rotate(0deg);
+				transition: transform 0.5s;
+			}
+		}
+
+		.activity-selector{
+			border: 1px solid white;
+			border-radius: 20px; 
+			@include set-icon-size(44px, 130px);
+
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: center;
+			position: relative;
+			align-items: center;
+
+			box-sizing: border-box;
+			padding: 14px 28px 13px 28px;
+			user-select: none;
+
+			img{
+				@include set-icon-size(8px, 15px);
+				margin-left: 7.5px;
+				padding-top: 2px;
+			}
+			p{margin-right: 7.5px;}
+
+			&:hover{
+				cursor: default;
+			}
+		}
+
+		.activity-header{
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: space-between;
+
+			h3{
+				font-weight: 550;
+				font-size: 18px;
+				line-height: 22px;
+			}
+
+			p{
+				color: white;
+				margin: 0px;
+			}
+		}
+
+		.content-container{
+
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: space-between;
+
+			
+		}
+
+		.content-icon{
+			@include set-icon-size(74px, 81px);
+			@include centre();
+
+			border-radius: 20px;
+			margin: 0px 15px 0px 22px;
+			box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+		}
+
+		h3{
+			font-size: 18px;
+			font-weight: 600;
+			color: #FFF;
+			font-style: normal;
+		}
+
+		.daily-walking {
+			box-shadow: 0px 0px 10px #dbdbdb;
+			@include set-icon-size(110px, 277px);
+			@include make-background();
+			border-radius: 40px;
+
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;	
+		}
+
+
+
+		.water{
+			box-shadow: 0px 0px 10px #dbdbdb;
+			background-color: #E95F8B;
+			border-radius: 40px;
+			display: flex;
+			flex-flow: column nowrap;
+			@include set-icon-size(222px, 277px);
+			
+		}
+
+		.water-header{
+			@include set-icon-size(126px, 277px);
+			border: 2px solid #FFD7D7;
+			background-color: #FF9ABA;
+			border-radius: 40px;
+
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;	
+		}
+
+		.water-footer{
+			display: flex;
+			flex-flow: row;
+			justify-content: space-between;
+			align-items: flex-end;
+
+			flex: 1;
+
+			.water-info{
+				padding: 20px 23px 24px ;
+			}
+
+			h3{
+				font-weight: 600;
+				font-size: 26px;
+				line-height: 31px;
+				margin: 4px 0px 0px;
+			}
+
+			p{
+				color: white;
+				font-weight: 500;
+				font-size: 14px;
+				line-height: 17px;
+				margin: 0px;
+			}
+
+			img{
+				@include set-icon-size(80px, 140px);
+			}
+		}
+	
+	}
+
+	.cards-content{
+		
+
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+
+		.card{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			position: relative;
+
+			width: 100%;
+			margin: 0px 21px;
+			object-fit: cover;
+			@include scale-hover(1.05);
+		}
+
+		.card-header{
+				
+			z-index: 1;
+			background: linear-gradient(to bottom, #4439DE, #3F36C6);
+			@include centre();
+			@include set-icon-size(83px, 92px);
+			border-radius: 20px;
+			
+		}	
+
+		.card-data{
+			@include set-icon-size(237px, 100%);
+			position: relative;
+			top:-49px;
+
+			background-color: #FFF;
+			border-radius: 50px;
+
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			button{
+				position: absolute;
+				top: 0px;
+				right:0px;
+				margin: 29px 27px 0px 0px; 
+				
+				@include centre();
+				//@include set-icon-size(30px, 30px);
+
+				background-color: transparent;
+				border: 0;
+				border-radius: 5px;
+			}
+
+			h3{
+				margin: 69px 0px 0px;
+				color: #4138D0;
+				font-size: 20px;
+			}
+			p{
+				margin: 0px;
+				color: #787878;
+				font-size: 14px;
+			}
+		}
+
+		.card-progress{
+			margin: 35px 0px 16px;
+
+			@mixin set-progress-bar(){
+				background-color: #D2D2D2;
+				height: 7px;
+				border: 0;
+				border-radius: 100px;
+			}
+			progress {@include set-progress-bar();}
+			progress::-webkit-progress-value{
+				background: #554CE1;
+				border-radius: 100px;
+			}
+
+			progress::-webkit-progress-bar {@include set-progress-bar();}
+			progress::-moz-progress-bar {@include set-progress-bar();}
+
+		}
+
+		.card-progress-info{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+
+			p{
+				color: #554CE1;
+				font-size: 15px;
+			}
+		}
+	}
+}
+
+.coming-soon-page{
+	margin-top: 20px;
+	@include centre();
+	h3{
+		color: #3B32C0;
+		font-size: 2rem;
+	}
+}
+
+.main-panel{
+
+	margin: 38px 45px 0px 33px;
+	flex: 1;
+
+	.main-panel-header{
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+
+		&>button{
+			background-color: #554CE1;
+			@include set-icon-size(55px, 184px);
+			border: 0px;
+			border-radius: 50px;
+
+			color: #FFF;
+			font-size: 14px;
+		}
+
+		div{
+			background-color: #FFF;
+			border-radius: 50px;
+			@include set-icon-size(55px, 402px);
+
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			box-shadow: 0px 0px 10px #dbdbdb;
+		}
+
+		a{
+			margin-left: 30px;
+			margin-right: 6px;
+			@include set-icon-size(15px, 15px);
+		}
+
+		input{
+			border: none ;
+			font-size: 14px;
+
+			&:focus{outline: none;}	
+		}
+	}
+
+	
+}
+
+.right-panel{
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0px;
+
+	min-height: 660px;
+	width: 244px;
+	background-color: #FFF;
+	border-radius: 0px 50px 50px 0px;
+	box-shadow: 0px 0px 10px #dbdbdb;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: space-between;
+	padding: 34px 0px 23px;
+
+	.meter-content{
+		margin: 87px 0px 23px;
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+
+		canvas{
+			@include set-icon-size(104px, 174px);
+		}
+
+		p{margin: 0px 0px 15px;}
+		h3{margin: 0px 0px 16px;}
+
+		span{
+			font-size: 14px;
+			color: #787878;
+		}
+	}
+
+	.select-btn{
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		width: 203px;
+		height: 54px;
+		padding: 15px 0px;
+
+		@include scale-hover();
+
+		.select-content{
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			justify-content: space-between;
+			flex-shrink: 0;
+			margin-left: 10px;
+			flex: 1;
+		}
+
+		.select-icon{
+			border-radius: 100px;
+			@include set-icon-size(54px, 54px);
+			@include centre();
+		}
+
+		button{
+			border-radius: 10px;
+			border: 0px;
+			background-color: #FFF;
+			box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+			@include set-icon-size(31px, 32px);
+			@include centre();
+			padding-left: 8px;
+			&:hover{
+				background-color: #ebebeb;
+				
+			}
+		}
+
+		h3{
+			margin: 0px;
+			@include centre();
+			font-weight: 400;
+			font-size: 18px;
+			&:hover{
+				cursor: default;
+			}
+		}
+	}
+
+	.user-card{
+		height: 64px;
+		width: 193px;
+		display: flex;
+		flex-flow: row nowrap;
+	
+		.user-info{
+			padding: 15px 0px 10px 8px;
+		}
+
+		h3{	
+			margin: 0px 0px 4px;
+			font-weight: bold;
+			font-size: 16px;
+		}
+
+		p{
+			margin: 0px;
+			font-weight: 400;
+			font-size: 13px;
+			color:#787878;
+		}
+	}
+
+	.user-logo{
+		@include set-icon-size(64px, 64px);
+		background-color: transparent;
+
+		border: 2.5px solid #6D63FF;
+		border-radius: 100px;
+
+		box-sizing: border-box;
+		@include centre();
+
+		img{
+			@include set-icon-size(54px, 54px);
+		}
+	}
+}
+
+.left-panel{
+	position: -webkit-sticky;
+	position: sticky;
+	top: 20px;
+
+	box-shadow: 0px 0px 10px #dbdbdb;
+ 	margin: 21px 0px 22px 30px;
+	
+	min-height: 640px;
+	width: 104px;
+	border-radius: 40px;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	@include make-background();
+
+	button {
+		@include centre();
+		@include set-icon-size(25px, 25px);
+		margin: 10px 0px;
+        height: 34px;
+        width: 34px;
+        border-radius: 13px;
+        border: 0px;
+		
+		@include scale-hover();
+		
+	}
+
+	.btn-notification{
+		@include set-icon-size(30px, 30px);
+		background-color: transparent;
+		border: 3px solid #FFF;
+		border-radius: 10px;
+		margin: 30px 0px 14px;
+		
+	}
+}
