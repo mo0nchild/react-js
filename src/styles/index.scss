@@ -50,6 +50,7 @@ body{
 			user-select: none;
 		}
 	}
+
 }
 
 .main-content{
@@ -299,7 +300,7 @@ body{
 			@include set-icon-size(83px, 92px);
 			border-radius: 20px;
 			
-		}	
+		}
 
 		.card-data{
 			@include set-icon-size(237px, 100%);
@@ -432,6 +433,7 @@ body{
 	position: -webkit-sticky;
 	position: sticky;
 	top: 0px;
+	right: 0px;
 
 	min-height: 660px;
 	width: 244px;
@@ -445,6 +447,53 @@ body{
 	justify-content: space-between;
 	padding: 34px 0px 23px;
 
+
+//-------------------------------------------------------------------------
+
+	&>button{
+		border: 0;
+		background-color: transparent;
+		position: absolute;
+		right: 0px;
+		margin-right: 25px;
+		font-size: 20px;
+	}
+
+	&.full-size{
+		position: fixed;
+		overflow: hidden;
+		width: 100%;
+		transform: translate(0px, 0);
+		transition: all 1s;
+		&>button{
+			visibility: visible;
+		}
+		border-radius: 50px;
+
+		#root &{
+			overflow: hidden;
+		}
+
+	}
+
+	&.panel-size{
+		animation-duration: 2s;
+  		animation-name: slidein;
+
+		width: 244px;
+		transition: width 0.5s;
+		&>button{
+			visibility: hidden;
+		}
+	}
+
+	@keyframes slidein {
+		from {position: fixed;}
+		to {position: sticky;}
+	  }
+
+//-------------------------------------------------------------------------
+	
 	.meter-content{
 		margin: 87px 0px 23px;
 		display: flex;

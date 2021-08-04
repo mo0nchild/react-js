@@ -25,7 +25,10 @@ function MainPage(props){
 
     <LeftPanel class = "left-panel" updatePage = {updateCurrentPage} key={0}/>
     <MainPanel class = "main-panel" data={props.data} page={page} key={1}/>
-    <RightPanel class = "right-panel" data={props.data} key={2}/>
+    <div>
+      <div style={{width: '244px'}}></div>
+      <RightPanel class = "right-panel" data={props.data} key={2}/>
+    </div>
 
     </div>
   );

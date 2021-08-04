@@ -19,6 +19,7 @@ export default class RightPanel extends Component{
     super(props);
     this.meterRef = createRef();
     this.state = {
+      fullSize: false,
       windowHeight: window.innerHeight,
       lossWeight: 5,
       userTime: '4 month',
@@ -42,7 +43,7 @@ export default class RightPanel extends Component{
         <div className="select-icon" style={{backgroundColor: data.color}}><img src={data.icon} alt=""/></div>
         <div className="select-content">
           <h3>{data.text}</h3>
-          <button><img src={NextLogo} alt=""/></button>
+          <button onClick={()=>this.setState({fullSize: true})}><img src={NextLogo} alt=""/></button>
         </div>
       </div>
     );
@@ -59,11 +60,13 @@ export default class RightPanel extends Component{
   }
 
   render(){
+    const extra = (this.state.fullSize)?'full-size':'panel-size';
     return(
-      <div className={this.props.class} style={{
+      <div className={this.props.class + ` ${extra}`} style={{
         height:`${this.state.windowHeight-57}px`
       }}>
         <UserCard userName={this.state.userName} userTime={this.state.userTime}/>
+        <button onClick={()=>this.setState({fullSize: false,})}>x</button>
         <div className="action">
           {icons.map((el, index)=>this.render_button(el, index))}
 

@@ -611,6 +611,7 @@ body #root h3, body #root img {
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
+  right: 0px;
   min-height: 660px;
   width: 244px;
   background-color: #FFF;
@@ -631,6 +632,68 @@ body #root h3, body #root img {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 34px 0px 23px;
+}
+
+.right-panel > button {
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  right: 0px;
+  margin-right: 25px;
+  font-size: 20px;
+}
+
+.right-panel.full-size {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  -webkit-transform: translate(0px, 0);
+          transform: translate(0px, 0);
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  border-radius: 50px;
+}
+
+.right-panel.full-size > button {
+  visibility: visible;
+}
+
+#root .right-panel.full-size {
+  overflow: hidden;
+}
+
+.right-panel.panel-size {
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-name: slidein;
+          animation-name: slidein;
+  width: 244px;
+  -webkit-transition: width 0.5s;
+  transition: width 0.5s;
+}
+
+.right-panel.panel-size > button {
+  visibility: hidden;
+}
+
+@-webkit-keyframes slidein {
+  from {
+    position: fixed;
+  }
+  to {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+@keyframes slidein {
+  from {
+    position: fixed;
+  }
+  to {
+    position: -webkit-sticky;
+    position: sticky;
+  }
 }
 
 .right-panel .meter-content {
